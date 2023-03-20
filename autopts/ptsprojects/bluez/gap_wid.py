@@ -58,7 +58,10 @@ def hdl_wid_77(desc):
 
 
 def hdl_wid_78(desc):
+    log("bluez: hdl_wid_78: %r", desc)
+    log("bluez: hdl_wid_78: gap_conn")
     btp.gap_conn()
+    log("bluez: hdl_wid_78: gap_wait_for_connection")
     btp.gap_wait_for_connection()
     return True
 

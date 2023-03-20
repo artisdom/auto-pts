@@ -96,6 +96,7 @@ def set_pixits(ptses):
     pts.set_pixit("GAP", "TSPX_iut_rx_mtu", "23")
     pts.set_pixit("GAP", "TSPX_iut_private_address_interval", "5000")
     pts.set_pixit("GAP", "TSPX_iut_privacy_enabled", "FALSE")
+    pts.set_pixit("GAP", "TSPX_spsm", "0000")
     pts.set_pixit("GAP", "TSPX_psm", "1001")
     pts.set_pixit("GAP", "TSPX_iut_valid_connection_interval_min", "00C8")
     pts.set_pixit("GAP", "TSPX_iut_valid_connection_interval_max", "03C0")
@@ -122,7 +123,7 @@ def set_pixits(ptses):
     pts.set_pixit("GAP", "TSPX_iut_mandates_mitm", "FALSE")
     pts.set_pixit("GAP", "TSPX_encryption_before_service_request", "FALSE")
     pts.set_pixit("GAP", "TSPX_tester_appearance", "0000")
-    pts.set_pixit("GAP", "TSPX_advertising_data", "")
+    pts.set_pixit("GAP", "TSPX_advertising_data", "FFFFABCD")
     pts.set_pixit("GAP", "TSPX_iut_device_IRK_for_resolvable_privacy_address_generation_procedure",
                   "00000000000000000000000000000000")
     pts.set_pixit("GAP", "TSPX_tester_device_IRK_for_resolvable_privacy_address_generation_procedure",
@@ -131,6 +132,7 @@ def set_pixits(ptses):
                   "TSPX_iut_device_name_in_adv_packet_for_random_address", "")
     pts.set_pixit("GAP", "TSPX_Tgap_104", "60000")
     pts.set_pixit("GAP", "TSPX_URI", "162F2F7777772E626C7565746F6F74682E636F6D")
+    pts.set_pixit("GAP", "TSPX_gap_iut_role", "Central")
 
 
 def test_cases(ptses):
@@ -166,13 +168,13 @@ def test_cases(ptses):
         TestFunc(lambda: pts.update_pixit_param(
             "GAP", "TSPX_using_public_device_address",
             "FALSE" if stack.gap.iut_addr_is_random() else "TRUE")),
-        TestFunc(lambda: pts.update_pixit_param(
-            "GAP", "TSPX_using_private_device_address",
-            "TRUE" if stack.gap.iut_addr_is_random() else "FALSE")),
+        # TestFunc(lambda: pts.update_pixit_param(
+        #     "GAP", "TSPX_using_private_device_address",
+        #     "TRUE" if stack.gap.iut_addr_is_random() else "FALSE")),
         TestFunc(lambda: pts.update_pixit_param(
             "GAP", "TSPX_iut_device_name_in_adv_packet_for_random_address", iut_device_name)),
         TestFunc(lambda: pts.update_pixit_param(
-            "GAP", "TSPX_advertising_data", ad_pixit)),
+            "GAP", "TSPX_advertising_data", iut_manufacturer_data)),
         TestFunc(lambda: pts.update_pixit_param(
             "GAP", "TSPX_using_random_device_address",
             "TRUE" if stack.gap.iut_addr_is_random()
