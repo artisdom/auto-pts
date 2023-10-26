@@ -32,7 +32,7 @@ def gap_wid_hdl(wid, description, test_case_name):
 
     try:
         handler = getattr(module, "hdl_wid_%d" % wid)
-        return handler(description)
+        return handler(description, test_case_name)
     except AttributeError:
         return gen_wid_hdl(wid, description, test_case_name, False)
 
@@ -57,7 +57,10 @@ def hdl_wid_77(desc):
     return True
 
 
-def hdl_wid_78(desc):
+def hdl_wid_78(desc, test_case_name):
+    if test_case_name.startswith("GAP/CONN/DCEP/BV-01-C"):
+        return True
+
     log("bluez: hdl_wid_78: %r", desc)
     log("bluez: hdl_wid_78: gap_conn")
     btp.gap_conn()
@@ -86,6 +89,16 @@ def hdl_wid_80(desc):
 
     return True
 
+def hdl_wid_85(desc, test_case_name):
+    if test_case_name.startswith("GAP/CONN/DCEP/BV-01-C"):
+        log("bluez: hdl_wid_85: %r", desc)
+        log("bluez: hdl_wid_85: gap_conn")
+        btp.gap_conn()
+        log("bluez: hdl_wid_85: gap_wait_for_connection")
+        btp.gap_wait_for_connection()
+        return True
+
+    return True
 
 def hdl_wid_108(desc):
     btp.gap_wait_for_connection()

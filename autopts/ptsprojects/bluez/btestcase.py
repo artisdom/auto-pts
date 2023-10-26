@@ -13,7 +13,7 @@
 # more details.
 #
 
-"""Test case that manages Zephyr IUT"""
+"""Test case that manages BlueZ IUT"""
 
 from autopts.ptsprojects.testcase import TestCaseLT1, TestCaseLT2, TestFunc, \
     TestFuncCleanUp

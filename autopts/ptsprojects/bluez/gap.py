@@ -209,6 +209,11 @@ def test_cases(ptses):
                   cmds=pre_conditions +
                   [TestFunc(btp.gap_set_io_cap, IOCap.display_only)],
                   generic_wid_hdl=gap_wid_hdl),
+        BTestCase("GAP", "GAP/CONN/CPUP/BV-04-C",
+                  cmds=pre_conditions +
+                  [TestFunc(btp.gap_set_io_cap, IOCap.display_only),
+                   TestFunc(btp.gap_conn, start_wid=78)],
+                  generic_wid_hdl=gap_wid_hdl),
         BTestCase("GAP", "GAP/BOND/NBON/BV-01-C",
                   cmds=pre_conditions +
                   [TestFunc(btp.gap_set_io_cap, IOCap.display_only)],
